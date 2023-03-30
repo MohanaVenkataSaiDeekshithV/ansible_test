@@ -11,3 +11,12 @@
     file:
       path: ~/abc/1.txt
       state: touch
+
+- name: Update n2 server
+  hosts: n2
+
+  tasks:
+  - name: Create a directory 
+    file:
+      path: ~/abc
+      state: directory
