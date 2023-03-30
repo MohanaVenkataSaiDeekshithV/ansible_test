@@ -20,3 +20,7 @@
     file:
       path: ~/abc
       state: directory
+  - name: Create a directory 
+    copy:
+      src: content.txt
+      dest: ~/req_text.txt
