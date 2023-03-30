@@ -24,3 +24,4 @@
     copy:
       src: content.txt
       dest: ~/req_text.txt
+...
