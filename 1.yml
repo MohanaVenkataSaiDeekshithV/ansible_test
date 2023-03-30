@@ -1,0 +1,13 @@
+---
+- name: Update n1 server
+  hosts: n1
+
+  tasks:
+  - name: Create a directory 
+    file:
+      path: ~/abc
+      state: directory
+  - name: Create a file in home_location/abc directory
+    file:
+      path:~/abc/1.txt
+      state:touch
