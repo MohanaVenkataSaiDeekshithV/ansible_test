@@ -9,5 +9,5 @@
       state: directory
   - name: Create a file in home_location/abc directory
     file:
-      path:~/abc/1.txt
-      state:touch
+      path: ~/abc/1.txt
+      state: touch
