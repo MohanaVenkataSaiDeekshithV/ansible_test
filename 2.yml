@@ -1,0 +1,21 @@
+---
+- name: Update n3 server
+  hosts: n3
+  become: true
+  
+  tasks:
+  - name: Install httpd 
+    yum:
+      name: httpd
+      state: installed
+  - name: enabling httpd
+    service:
+      name: httpd
+      enabled: true
+  - name: enabling httpd
+    service:
+      name: httpd
+      state: started
+...
+
+
