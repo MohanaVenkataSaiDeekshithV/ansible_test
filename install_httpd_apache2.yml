@@ -1,0 +1,56 @@
+---
+- name: Install httpd in all servers 
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Install httpd
+    dnf:
+      name: httpd
+      state: present
+    when: ansible_distribution == "Amazon"
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+    when: ansible_distribution == "CentOS"
+  - name: Install httpd
+    apt:
+      name: apache2
+      state: present
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  
+  - name: enabling httpd
+    service:
+      name: httpd
+      enabled: true
+    when: ansible_distribution == "Amazon"
+  - name: enabling httpd
+    service:
+      name: httpd
+      enabled: true
+    when: ansible_distribution == "CentOS"
+  - name: enabling apache2
+    service:
+      name: apache2
+      enabled: true
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  
+  - name: starting httpd
+    service:
+      name: httpd
+      state: started
+    when: ansible_distribution == "Amazon"
+  - name: starting httpd
+    service:
+      name: httpd
+      state: started
+    when: ansible_distribution == "CentOS"
+  - name: starting apache2
+    service:
+      name: apache2
+      state: started
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+...
+
+

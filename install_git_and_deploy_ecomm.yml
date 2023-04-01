@@ -1,0 +1,40 @@
+---
+- name: Install git and deploy ecomm in all servers 
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Install git
+    dnf:
+      name: git
+      state: present
+    when: ansible_distribution == "Amazon"
+  
+  - name: Install git1
+    yum:
+      name: git
+      state: present
+    when: ansible_distribution == "CentOS"
+
+  - name: Install git2
+    apt:
+      name: git
+      state: present
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+  - name: remove contents in varwwwhtml location
+    command:
+      cmd: rm -r /var/www/html
+
+  - name: clone and deploy ecomm
+    command:
+      cmd: git clone https://github.com/ravi2krishna/ecomm.git /var/www/html
+
+############################          IMP IMP IMP          ##############################################
+## or the above 4 lines can be written by using "ansible git module", we can see it below. 
+## - name: clone and deploy ecomm
+##   git:
+##     repo: https://github.com/ravi2krishna/ecomm.git
+##     dest: /var/www/html 
+#
+#...
