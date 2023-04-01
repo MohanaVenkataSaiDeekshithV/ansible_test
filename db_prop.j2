@@ -1,0 +1,13 @@
+#------PointBase--------------------------------
+#@IF_USING_POINTBASE@
+database=POINTBASE
+db_version=44
+jdbcdriver=com.pointbase.jdbc.jdbcUniversalDriver
+host=localhost
+db_name=workshop
+port=9093
+dblogin=WEBLOGIC
+dbpassword=WEBLOGIC
+connection=jdbc:pointbase:server://{{ansible_default_ipv4.address}}:9093/workshop
+pointbase_ini=pointbase/pointbase.ini
+#@ENDIF_USING_POINTBASE@

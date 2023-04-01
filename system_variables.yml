@@ -1,0 +1,10 @@
+---
+- name: system_variables during exec. time. 
+  hosts: n1
+  become: false #No need of sudo permission as we are copying the file in only user directory.
+
+  tasks:
+  - name: system_variables.
+    template:
+      src: db_prop.j2
+      dest: /home/{{ansible_user_id}}/
