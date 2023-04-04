@@ -1,0 +1,35 @@
+---
+- name: Install git and change the port no along with restarting it whenever port no. changes using handlers.
+  hosts: n5
+  become: true
+  vars:
+    port_var: 100
+
+  tasks:
+  - name: Install httpd
+    dnf:
+      name: httpd
+      state: present
+
+  - name: enabling httpd
+    service:
+      name: httpd
+      enabled: true
+
+  - name: starting httpd
+    service:
+      name: httpd
+      state: started
+
+  - name: change port no. of httpd
+    template:
+      dest: /etc/httpd/conf/httpd.conf
+      src: httpd.j2
+    notify: 
+    - Restart apache
+
+  handlers:
+    - name: Restart apache
+      service:
+        name: httpd
+        state: restarted
